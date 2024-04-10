@@ -18,7 +18,7 @@ class SlotMachine {
         return this.reelsCount;
     }
     get rowsCountValue() {
-        return this.reelsCount;
+        return this.rowsCount;
     }
     get resultValue() {
         return this.result;
@@ -30,14 +30,19 @@ class SlotMachine {
         for (let i = 0; i < this.rowsCount; i++) {
             this.result[i] = [];
             for (let reel of this.reels) {
-                this.result[i].push(reel[SlotMachine.generateRandomIndexForReel(reel.length - 1)]);
+                const randomIndex = SlotMachine.generateRandomIndexForReel(reel.length - 1);
+                this.result[i].push(reel[randomIndex]);
             }
         }
-        return this.result;
     }
     evaluateResult() {
         return 1;
     }
+    presentResult() {
+        this.result.map((row) => row.join(' ') + '\n');
+        return this.result;
+    }
 }
 const mySlotMachine = new SlotMachine();
-console.log(mySlotMachine.spin());
+mySlotMachine.spin();
+console.log(mySlotMachine.presentResult());

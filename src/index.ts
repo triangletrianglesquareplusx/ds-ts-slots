@@ -5,12 +5,14 @@ class SlotMachine {
   protected rowsCount: number;
   protected reels: number[][];
   private result: number[][];
+  private winningLines: number[][];
 
   constructor() {
     this.reelsCount = configuration.reelsCount;
     this.rowsCount = configuration.rowsCount;
     this.reels = configuration.reels;
     this.result = [];
+    this.winningLines = configuration.lines;
   }
   get reelsValueTemp() {
     return this.reels;
@@ -21,7 +23,7 @@ class SlotMachine {
   }
 
   get rowsCountValue() {
-    return this.reelsCount;
+    return this.rowsCount;
   }
 
   get resultValue() {
@@ -32,22 +34,30 @@ class SlotMachine {
     return Math.floor(Math.random() * reelLength) + 1;
   }
 
-  spin() {
+  spin(): void {
     for (let i = 0; i < this.rowsCount; i++) {
       this.result[i] = [];
       for (let reel of this.reels) {
-        this.result[i].push(
-          reel[SlotMachine.generateRandomIndexForReel(reel.length-1)]
+        const randomIndex = SlotMachine.generateRandomIndexForReel(
+          reel.length - 1
         );
+        this.result[i].push(reel[randomIndex]);
       }
     }
-    return this.result;
   }
 
   evaluateResult(): number {
     return 1;
   }
+
+  presentResult(): string {
+    const formattedResult = this.result
+      .map((row: number[]) => row.join(" "))
+      .join("\n");
+    return formattedResult;
+  }
 }
 
 const mySlotMachine = new SlotMachine();
-console.log(mySlotMachine.spin());
+mySlotMachine.spin();
+console.log(mySlotMachine.presentResult());
