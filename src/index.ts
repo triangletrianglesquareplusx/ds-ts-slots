@@ -1,4 +1,4 @@
-import configuration from './configuration'
+import configuration from "./configuration";
 
 class SlotMachine {
   protected reelsCount: number;
@@ -12,16 +12,19 @@ class SlotMachine {
     this.reels = configuration.reels;
     this.result = [];
   }
-  
-  get reelsCountValue(){
+  get reelsValueTemp() {
+    return this.reels;
+  }
+
+  get reelsCountValue() {
     return this.reelsCount;
   }
 
-  get rowsCountValue(){
+  get rowsCountValue() {
     return this.reelsCount;
   }
 
-  get resultValue(){
+  get resultValue() {
     return this.result;
   }
 
@@ -29,14 +32,22 @@ class SlotMachine {
     return Math.floor(Math.random() * reelLength) + 1;
   }
 
-  spin(){
-
+  spin() {
+    for (let i = 0; i < this.rowsCount; i++) {
+      this.result[i] = [];
+      for (let reel of this.reels) {
+        this.result[i].push(
+          reel[SlotMachine.generateRandomIndexForReel(reel.length-1)]
+        );
+      }
+    }
+    return this.result;
   }
 
-  evaluateResult(): number{
+  evaluateResult(): number {
     return 1;
   }
 }
 
 const mySlotMachine = new SlotMachine();
-console.log(mySlotMachine.reelsCountValue);
+console.log(mySlotMachine.spin());
