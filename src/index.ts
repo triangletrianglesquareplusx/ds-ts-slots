@@ -1,4 +1,5 @@
 import configuration from "./configuration";
+import { RuleChecker } from "./ruleChecker";
 
 class SlotMachine {
   protected reelsCount: number;
@@ -61,3 +62,5 @@ class SlotMachine {
 const mySlotMachine = new SlotMachine();
 mySlotMachine.spin();
 console.log(mySlotMachine.presentResult());
+
+RuleChecker.checkForWinningConditions([[1,2,3], [2,2,2]])

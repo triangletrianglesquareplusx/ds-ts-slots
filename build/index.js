@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const configuration_1 = __importDefault(require("./configuration"));
+const ruleChecker_1 = require("./ruleChecker");
 class SlotMachine {
     constructor() {
         this.reelsCount = configuration_1.default.reelsCount;
@@ -49,3 +50,4 @@ class SlotMachine {
 const mySlotMachine = new SlotMachine();
 mySlotMachine.spin();
 console.log(mySlotMachine.presentResult());
+ruleChecker_1.RuleChecker.checkForWinningConditions([[1, 2, 3], [2, 2, 2]]);
