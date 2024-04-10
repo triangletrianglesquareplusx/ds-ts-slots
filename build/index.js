@@ -10,6 +10,7 @@ class SlotMachine {
         this.rowsCount = configuration_1.default.rowsCount;
         this.reels = configuration_1.default.reels;
         this.result = [];
+        this.winningLines = configuration_1.default.lines;
     }
     get reelsValueTemp() {
         return this.reels;
@@ -39,8 +40,10 @@ class SlotMachine {
         return 1;
     }
     presentResult() {
-        this.result.map((row) => row.join(' ') + '\n');
-        return this.result;
+        const formattedResult = this.result
+            .map((row) => row.join(" "))
+            .join("\n");
+        return formattedResult;
     }
 }
 const mySlotMachine = new SlotMachine();
