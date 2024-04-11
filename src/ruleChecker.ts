@@ -2,7 +2,7 @@ import configuration from "./configuration";
 
 export class RuleChecker {
   private static lines = configuration.lines;
-  private static pattern = [0, 1, 2];
+  private static pattern = [0, 1, 2, 3, 4];
   //yes I know about type inferrence but if I did not use this typing for symbolsLookupMap ts was giving me an accessor error. So I am pressed for time and have to use this way
   private static symbolsLookupMap: {
     [symbol: number]: number[];
@@ -19,6 +19,10 @@ export class RuleChecker {
       const evalLine = slotMatrix[winLine];
       total += RuleChecker.checkGenericWinningCondition(evalLine, winLine);
     }
+    let flattenedArr = [slotMatrix[0], slotMatrix[1]].flat();
+
+    //total += RuleChecker.checkComplexWinningCondition(flattenedArr);
+
     console.log(
       "Your payout is " +
         (total > 0 ? `${total}` : `${total}, sorry no winnings`)
@@ -49,7 +53,17 @@ export class RuleChecker {
     return payoutVal;
   }
 
-  static checkComplexWinningCondition(arrOfNums: number[]) {}
+  static checkComplexWinningCondition(arrOfNums: number[]) {
+    let numbers = []
+    for (let i = 0; i < arrOfNums.length; i++) {
+      numbers.push(arrOfNums[i]);
+      i++;
+    }
+    if(arrOfNums[0] == arrOfNums[1] && arrOfNums[1] == arrOfNums[2] && (arrOfNums[3] == arrOfNums[4])){
+
+    }
+    return numbers;
+  }
 
   static calculatePayout(arrOfNums: number[], pattern: number) {
     let payout = 0;
@@ -57,6 +71,12 @@ export class RuleChecker {
       let valueToSearch = arrOfNums[0];
       console.log(valueToSearch + " is the value to search");
       payout = RuleChecker.symbolsLookupMap[valueToSearch][4];
+    }else if(pattern == 3 || pattern == 4){
+      let valueToSearch = arrOfNums[0]
+      payout += RuleChecker.symbolsLookupMap[valueToSearch][2]
+      
+      let secondValueToSearch = arrOfNums[3]
+      payout += RuleChecker.symbolsLookupMap[secondValueToSearch][1]
     }
     return payout;
   }

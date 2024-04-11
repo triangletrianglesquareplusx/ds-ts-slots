@@ -71,3 +71,5 @@ mySlotMachine.spin();
 console.log(mySlotMachine.presentResult());
 
 RuleChecker.checkForWinningConditions(mySlotMachine.resultValue)
+let flattened = [[1,3,2,4,1],[5,6,7,6,9]].flat();
+console.log(RuleChecker.checkComplexWinningCondition(flattened))
