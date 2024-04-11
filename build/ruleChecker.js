@@ -18,7 +18,8 @@ class RuleChecker {
                 const lineValue = slotMatrix[pattern].reduce((prev, current) => prev + current, 0);
                 const lineLength = slotMatrix[pattern].length;
                 if (lineValue % lineLength === 0) {
-                    winningConditions.push(`Strategy ${i} wins`);
+                    let testVal = RuleChecker.calculatePayout(slotMatrix[pattern], pattern);
+                    winningConditions.push(`Strategy ${i} wins, payout is ${testVal}`);
                 }
             }
         }
@@ -30,12 +31,16 @@ class RuleChecker {
         }
     }
     static calculatePayout(arrOfNums, pattern) {
+        let payout = 0;
         if (pattern == 0 || pattern == 1 || pattern == 2) {
-            const valueToSearch = arrOfNums[0];
+            let valueToSearch = arrOfNums[0];
+            payout = RuleChecker.symbolsLookupMap[valueToSearch][4];
         }
+        return payout;
     }
 }
 exports.RuleChecker = RuleChecker;
 RuleChecker.lines = configuration_1.default.lines;
 RuleChecker.pattern = [0, 1, 2];
+//yes I know about type inferrence but if I did not use this typing for symbolsLookupMap ts was giving me an accessor error. So I am pressed for time and have to use this way
 RuleChecker.symbolsLookupMap = configuration_1.default.symbols;
