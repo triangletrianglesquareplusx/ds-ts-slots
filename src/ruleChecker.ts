@@ -9,42 +9,53 @@ export class RuleChecker {
   } = configuration.symbols;
 
   static checkForWinningConditions(slotMatrix: number[][]): void {
-    //test first condition
-    const firstLine = slotMatrix[0];
-    console.log(RuleChecker.chechGenericWinningCondition(firstLine, 0))
+    //total
+    let total = 0;
+
+    //test first/second/third condition
+    for (let i = 0; i < 3; i++) {
+      //since there are three basic winning probabilities which are similar
+      let winLine = i;
+      const evalLine = slotMatrix[winLine];
+      total += RuleChecker.checkGenericWinningCondition(evalLine, winLine);
+    }
+    console.log(
+      "Your payout is " +
+        (total > 0 ? `${total}` : `${total}, sorry no winnings`)
+    );
   }
 
-  static chechGenericWinningCondition(arrOfNums: number[], index:number){
-    //winning condition 1
-    const line = RuleChecker.lines[0];
+  static checkGenericWinningCondition(arrOfNums: number[], index: number) {
+    //winning condition 1/2/3
+    let payoutVal = 0;
+    const line = RuleChecker.lines[index];
     //[0, 0, 0, 0, 0]
-    const pattern = RuleChecker.pattern[0];
+    const pattern = RuleChecker.pattern[index];
     //0
     let containsDifferentInts = false;
     if (line[0] === pattern) {
-      const comparator = arrOfNums[index];
+      const comparator = arrOfNums[0];
       //1 lets say
       for (let i = 0; i < arrOfNums.length; i++) {
         if (comparator != arrOfNums[i]) {
           containsDifferentInts = true;
         }
       }
-      let testVal=0;
+
       if (!containsDifferentInts) {
-        testVal = RuleChecker.calculatePayout(
-          arrOfNums,
-          pattern
-        );
+        payoutVal = RuleChecker.calculatePayout(arrOfNums, pattern);
       }
-      return testVal;
     }
+    return payoutVal;
   }
+
+  static checkComplexWinningCondition(arrOfNums: number[]) {}
 
   static calculatePayout(arrOfNums: number[], pattern: number) {
     let payout = 0;
     if (pattern == 0 || pattern == 1 || pattern == 2) {
       let valueToSearch = arrOfNums[0];
-      console.log(valueToSearch + ' is the value to search')
+      console.log(valueToSearch + " is the value to search");
       payout = RuleChecker.symbolsLookupMap[valueToSearch][4];
     }
     return payout;
