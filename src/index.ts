@@ -70,4 +70,4 @@ const mySlotMachine = new SlotMachine();
 mySlotMachine.spin();
 console.log(mySlotMachine.presentResult());
 
-RuleChecker.checkForWinningConditions([[1,2,3], [2,2,2]])
+RuleChecker.checkForWinningConditions([[1,2,3], [2,2,2], [2,3,4]])

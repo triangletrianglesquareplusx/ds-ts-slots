@@ -1,48 +1,41 @@
 import configuration from "./configuration";
 
 export class RuleChecker {
-  private static lines: number[][] = configuration.lines;
-  private static pattern: number[] = [0,1,2];
-
+  private static lines = configuration.lines;
+  private static pattern = [0, 1, 2];
+  private static symbolsLookupMap = configuration.symbols;
   static checkForWinningConditions(slotMatrix: number[][]): void {
-    let result = "";
-    
-    // go over all of the strategies since multiple conditions might be true. 
-    //check strategy 0
-    
-    if(RuleChecker.lines[0][0] == RuleChecker.pattern[0]){
-      const lineValue = slotMatrix[RuleChecker.pattern[0]].reduce((prev,acc)=>prev + acc,0);
-      const lineLength = slotMatrix[0].length;
+    const winningConditions: string[] = [];
+    console.log(slotMatrix);
+    for (let i = 0; i < RuleChecker.lines.length; i++) {
+      //this might account for the first three conditions
+      const line = RuleChecker.lines[i];
+      const pattern = RuleChecker.pattern[i];
+      console.log(`i is ${i}, line is ${line}, pattern is ${pattern}`);
 
-      //if we do a module for the full value of the line by its length and get 0 this means all members are the same
-      
-      if(lineValue % lineLength == 0){
-        result = 'Strategy 0 wins'
+      if (line[0] === pattern) {
+        const lineValue = slotMatrix[pattern].reduce(
+          (prev, current) => prev + current,
+          0
+        );
+        const lineLength = slotMatrix[pattern].length;
+
+        if (lineValue % lineLength === 0) {
+          winningConditions.push(`Strategy ${i} wins`);
+        }
       }
-    }else if(RuleChecker.lines[1][0] == RuleChecker.pattern[1]){
-      
     }
 
-    //rule 1
-    const lineToSum = slotMatrix[0].reduce((prev, acc) => acc + prev, 0);
-    lineToSum % slotMatrix[0].length == 0
-      ? (result = "you win")
-      : (result = "you lose");
-
-    //rule 2
-    // const lineToSum2 = slotMatrix[1].reduce((prev, acc) => acc + prev, 0);
-
-    // lineToSum % slotMatrix[0].length == 0
-    //   ? (result = "you win")
-    //   : (result = "you lose");
-
-    //rule 3
-    // const lineToSum3 = slotMatrix[2].reduce((prev, acc) => acc + prev, 0);
-
-    // lineToSum % slotMatrix[0].length == 0
-    //   ? (result = "you win")
-    //   : (result = "you lose");
+    if (winningConditions.length > 0) {
+      console.log("Winning Conditions:", winningConditions.join(", "));
+    } else {
+      console.log("No winning conditions met.");
+    }
   }
 
-  static calculatePayout() {}
+  static calculatePayout(arrOfNums: number[], pattern: number) {
+    if (pattern == 0 || pattern == 1 || pattern == 2) {
+      const valueToSearch = arrOfNums[0];
+    }
+  }
 }

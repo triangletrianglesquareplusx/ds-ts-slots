@@ -56,4 +56,4 @@ class SlotMachine {
 const mySlotMachine = new SlotMachine();
 mySlotMachine.spin();
 console.log(mySlotMachine.presentResult());
-ruleChecker_1.RuleChecker.checkForWinningConditions([[1, 2, 3], [2, 2, 2]]);
+ruleChecker_1.RuleChecker.checkForWinningConditions([[1, 2, 3], [2, 2, 2], [2, 3, 4]]);
