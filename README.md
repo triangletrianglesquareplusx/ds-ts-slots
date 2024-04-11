@@ -9,6 +9,10 @@ I guess it comes down to whether we want to keep the person hoping psychological
 
 I thought I had a good idea with the notion that if you sum 1 five times and then module 5 == 0 then these are all the same numbers but that is not the case: )
 
+I think I got tangled in making sure everything is as abstract and generic as possible. 
+
+Currently the task is solved for the basic winning conditions.
+
 ### Questions
 
 What if given the winning lines we get a slot spin where there are more than five 1s or more than five 2s? As far as I understand the rules we are anticipating that we there will never be more than 5?

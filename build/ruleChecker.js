@@ -44,14 +44,23 @@ class RuleChecker {
         return payoutVal;
     }
     static checkComplexWinningCondition(arrOfNums) {
+        let payoutVal = 0;
         let numbers = [];
         for (let i = 0; i < arrOfNums.length; i++) {
             numbers.push(arrOfNums[i]);
             i++;
         }
+        let firstVal = arrOfNums[0];
+        let secondVal = arrOfNums[3];
+        let lookupMap = {
+            [firstVal]: 0,
+            [secondVal]: 0
+        };
         if (arrOfNums[0] == arrOfNums[1] && arrOfNums[1] == arrOfNums[2] && (arrOfNums[3] == arrOfNums[4])) {
+            lookupMap[firstVal] = 3;
+            lookupMap[secondVal] = 2;
         }
-        return numbers;
+        // return numbers;
     }
     static calculatePayout(arrOfNums, pattern) {
         let payout = 0;
