@@ -5,7 +5,9 @@ calculated towards the winnings. As per the email and configuration.ts file I am
 
 When it comes to slot machines based on my 2 day experience winnings can be calculated both ONLY if winnings lines are encountered and also if a certain number of symbols are shown more than X times. So I am confused: D
 
-I guess it comes down to whether we want to keep the person hoping psychologically so he/she/they can lose more money at the game. Just thinking. 
+I guess it comes down to whether we want to keep the person hoping psychologically so he/she/they can lose more money at the game. Just thinking.
+
+I thought I had a good idea with the notion that if you sum 1 five times and then module 5 == 0 then these are all the same numbers but that is not the case: )
 
 ### Questions
 
