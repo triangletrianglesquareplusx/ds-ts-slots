@@ -11,7 +11,7 @@ I thought I had a good idea with the notion that if you sum 1 five times and the
 
 I think I got tangled in making sure everything is as abstract and generic as possible. 
 
-Currently the task is solved for the basic winning conditions.
+Currently the task is solved for the basic winning conditions. Sorry.
 
 ### Questions
 
