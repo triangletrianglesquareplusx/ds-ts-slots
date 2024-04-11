@@ -52,9 +52,16 @@ class SlotMachine {
   }
 
   presentResult(): string {
-    const formattedResult = this.result
-      .map((row: number[]) => row.join(" "))
-      .join("\n");
+    
+    const formattedResult = this.result.map((row: number[], i) => {
+      if (i === 0) {
+          const headerRow = '|R1|R2|R3|R4|R5|';
+          return `${headerRow}\n${row.map(num => num.toString().padStart(2, ' ')).join(" ")}`;
+      } else {
+          return row.map(num => num.toString().padStart(2, ' ')).join(" ");
+      }
+  }).join("\n");
+      
     return formattedResult;
   }
 }
